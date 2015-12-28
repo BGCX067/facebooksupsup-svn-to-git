@@ -1,0 +1,810 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SupbookModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SupbookModelStoreContainer">
+          <EntitySet Name="Friend" EntityType="SupbookModel.Store.Friend" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FriendGroup" EntityType="SupbookModel.Store.FriendGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Group" EntityType="SupbookModel.Store.Group" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Like" EntityType="SupbookModel.Store.Like" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MessageRight" EntityType="SupbookModel.Store.MessageRight" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MP" EntityType="SupbookModel.Store.MP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="SupbookModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Utilisateur" EntityType="SupbookModel.Store.Utilisateur" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Wall" EntityType="SupbookModel.Store.Wall" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Friend_Utilisateur" Association="SupbookModel.Store.FK_Friend_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_UtilisateurLinked" Association="SupbookModel.Store.FK_Friend_UtilisateurLinked">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FriendGroup_Group" Association="SupbookModel.Store.FK_FriendGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="FriendGroup" EntitySet="FriendGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FriendGroup_Utilisateur" Association="SupbookModel.Store.FK_FriendGroup_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="FriendGroup" EntitySet="FriendGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Like_Like" Association="SupbookModel.Store.FK_Like_Like">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Like" EntitySet="Like" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Like_Wall" Association="SupbookModel.Store.FK_Like_Wall">
+            <End Role="Wall" EntitySet="Wall" />
+            <End Role="Like" EntitySet="Like" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageRight_MessageRight" Association="SupbookModel.Store.FK_MessageRight_MessageRight">
+            <End Role="Wall" EntitySet="Wall" />
+            <End Role="MessageRight" EntitySet="MessageRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageRight_Utilisateur" Association="SupbookModel.Store.FK_MessageRight_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="MessageRight" EntitySet="MessageRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MP_Destinataire" Association="SupbookModel.Store.FK_MP_Destinataire">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="MP" EntitySet="MP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MP_Utilisateur" Association="SupbookModel.Store.FK_MP_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="MP" EntitySet="MP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Role" Association="SupbookModel.Store.FK_Utilisateur_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wall_Utilisateur" Association="SupbookModel.Store.FK_Wall_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Wall" EntitySet="Wall" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="IdFriend" />
+          </Key>
+          <Property Name="IdFriend" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdUserLinked" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FriendGroup">
+          <Key>
+            <PropertyRef Name="IdFriendGroup" />
+          </Key>
+          <Property Name="IdFriendGroup" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdGroup" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="IdGroup" />
+          </Key>
+          <Property Name="IdGroup" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IdOwner" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Like">
+          <Key>
+            <PropertyRef Name="IdLike" />
+          </Key>
+          <Property Name="IdLike" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdWall" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageRight">
+          <Key>
+            <PropertyRef Name="IdMessageRight" />
+          </Key>
+          <Property Name="IdMessageRight" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdWall" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MP">
+          <Key>
+            <PropertyRef Name="IdMp" />
+          </Key>
+          <Property Name="IdMp" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DateMP" Type="datetime" />
+          <Property Name="TxtMP" Type="nvarchar" MaxLength="200" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="IdContact" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="lbRole" Type="nvarchar" MaxLength="5" />
+          <Property Name="txtRole" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateDeNaissance" Type="datetime" />
+          <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" Nullable="false" MaxLength="75" />
+          <Property Name="IdRole" Type="int" />
+          <Property Name="PreventPublicPublish" Type="bit" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Wall">
+          <Key>
+            <PropertyRef Name="IdWall" />
+          </Key>
+          <Property Name="IdWall" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TitreWall" Type="nvarchar" MaxLength="50" />
+          <Property Name="TxtWall" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateWall" Type="datetime" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+        </EntityType>
+        <Association Name="FK_Friend_Utilisateur">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="1" />
+          <End Role="Friend" Type="SupbookModel.Store.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Friend_UtilisateurLinked">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="1" />
+          <End Role="Friend" Type="SupbookModel.Store.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="IdUserLinked" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FriendGroup_Group">
+          <End Role="Group" Type="SupbookModel.Store.Group" Multiplicity="1" />
+          <End Role="FriendGroup" Type="SupbookModel.Store.FriendGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="IdGroup" />
+            </Principal>
+            <Dependent Role="FriendGroup">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FriendGroup_Utilisateur">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="1" />
+          <End Role="FriendGroup" Type="SupbookModel.Store.FriendGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="FriendGroup">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Like_Like">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="1" />
+          <End Role="Like" Type="SupbookModel.Store.Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Like">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Like_Wall">
+          <End Role="Wall" Type="SupbookModel.Store.Wall" Multiplicity="1" />
+          <End Role="Like" Type="SupbookModel.Store.Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wall">
+              <PropertyRef Name="IdWall" />
+            </Principal>
+            <Dependent Role="Like">
+              <PropertyRef Name="IdWall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageRight_MessageRight">
+          <End Role="Wall" Type="SupbookModel.Store.Wall" Multiplicity="1" />
+          <End Role="MessageRight" Type="SupbookModel.Store.MessageRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wall">
+              <PropertyRef Name="IdWall" />
+            </Principal>
+            <Dependent Role="MessageRight">
+              <PropertyRef Name="IdWall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageRight_Utilisateur">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="1" />
+          <End Role="MessageRight" Type="SupbookModel.Store.MessageRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="MessageRight">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MP_Destinataire">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="0..1" />
+          <End Role="MP" Type="SupbookModel.Store.MP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="MP">
+              <PropertyRef Name="IdContact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MP_Utilisateur">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="0..1" />
+          <End Role="MP" Type="SupbookModel.Store.MP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="MP">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Role">
+          <End Role="Role" Type="SupbookModel.Store.Role" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wall_Utilisateur">
+          <End Role="Utilisateur" Type="SupbookModel.Store.Utilisateur" Multiplicity="0..1" />
+          <End Role="Wall" Type="SupbookModel.Store.Wall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Wall">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SupbookModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SupbookEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Friends" EntityType="SupbookModel.Friend" />
+          <EntitySet Name="Groups" EntityType="SupbookModel.Group" />
+          <EntitySet Name="MessageRights" EntityType="SupbookModel.MessageRight" />
+          <EntitySet Name="MPs" EntityType="SupbookModel.MP" />
+          <EntitySet Name="Roles" EntityType="SupbookModel.Role" />
+          <EntitySet Name="Utilisateurs" EntityType="SupbookModel.Utilisateur" />
+          <EntitySet Name="Walls" EntityType="SupbookModel.Wall" />
+          <AssociationSet Name="FK_Friend_Utilisateur" Association="SupbookModel.FK_Friend_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_UtilisateurLinked" Association="SupbookModel.FK_Friend_UtilisateurLinked">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageRight_MessageRight" Association="SupbookModel.FK_MessageRight_MessageRight">
+            <End Role="Wall" EntitySet="Walls" />
+            <End Role="MessageRight" EntitySet="MessageRights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageRight_Utilisateur" Association="SupbookModel.FK_MessageRight_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="MessageRight" EntitySet="MessageRights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MP_Destinataire" Association="SupbookModel.FK_MP_Destinataire">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="MP" EntitySet="MPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MP_Utilisateur" Association="SupbookModel.FK_MP_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="MP" EntitySet="MPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Role" Association="SupbookModel.FK_Utilisateur_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wall_Utilisateur" Association="SupbookModel.FK_Wall_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Wall" EntitySet="Walls" />
+          </AssociationSet>
+          <EntitySet Name="FriendGroups" EntityType="SupbookModel.FriendGroup" />
+          <AssociationSet Name="FK_FriendGroup_Group" Association="SupbookModel.FK_FriendGroup_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="FriendGroup" EntitySet="FriendGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FriendGroup_Utilisateur" Association="SupbookModel.FK_FriendGroup_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="FriendGroup" EntitySet="FriendGroups" />
+          </AssociationSet>
+          <EntitySet Name="Likes" EntityType="SupbookModel.Like" />
+          <AssociationSet Name="FK_Like_Like" Association="SupbookModel.FK_Like_Like">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Like" EntitySet="Likes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Like_Wall" Association="SupbookModel.FK_Like_Wall">
+            <End Role="Wall" EntitySet="Walls" />
+            <End Role="Like" EntitySet="Likes" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="IdFriend" />
+          </Key>
+          <Property Type="Int32" Name="IdFriend" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdUser" Nullable="false" />
+          <Property Type="Int32" Name="IdUserLinked" Nullable="false" />
+          <NavigationProperty Name="Utilisateur" Relationship="SupbookModel.FK_Friend_Utilisateur" FromRole="Friend" ToRole="Utilisateur" />
+          <NavigationProperty Name="UtilisateurLinked" Relationship="SupbookModel.FK_Friend_UtilisateurLinked" FromRole="Friend" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="IdGroup" />
+          </Key>
+          <Property Type="Int32" Name="IdGroup" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdOwner" Nullable="false" />
+          <NavigationProperty Name="FriendGroups" Relationship="SupbookModel.FK_FriendGroup_Group" FromRole="Group" ToRole="FriendGroup" />
+        </EntityType>
+        <EntityType Name="MessageRight">
+          <Key>
+            <PropertyRef Name="IdMessageRight" />
+          </Key>
+          <Property Type="Int32" Name="IdMessageRight" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdWall" Nullable="false" />
+          <Property Type="Int32" Name="IdUser" Nullable="false" />
+          <NavigationProperty Name="Wall" Relationship="SupbookModel.FK_MessageRight_MessageRight" FromRole="MessageRight" ToRole="Wall" />
+          <NavigationProperty Name="Utilisateur" Relationship="SupbookModel.FK_MessageRight_Utilisateur" FromRole="MessageRight" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="MP">
+          <Key>
+            <PropertyRef Name="IdMp" />
+          </Key>
+          <Property Type="Int32" Name="IdMp" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="DateMP" />
+          <Property Type="String" Name="TxtMP" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdUser" />
+          <Property Type="Int32" Name="IdContact" />
+          <NavigationProperty Name="Utilisateur" Relationship="SupbookModel.FK_MP_Destinataire" FromRole="MP" ToRole="Utilisateur" />
+          <NavigationProperty Name="UtilisateurDestinataire" Relationship="SupbookModel.FK_MP_Utilisateur" FromRole="MP" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Type="Int32" Name="IdRole" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="lbRole" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="txtRole" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Utilisateurs" Relationship="SupbookModel.FK_Utilisateur_Role" FromRole="Role" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Type="Int32" Name="IdUser" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Prenom" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Adresse" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateDeNaissance" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mail" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdRole" />
+          <NavigationProperty Name="Friends" Relationship="SupbookModel.FK_Friend_Utilisateur" FromRole="Utilisateur" ToRole="Friend" />
+          <NavigationProperty Name="MessageRights" Relationship="SupbookModel.FK_MessageRight_Utilisateur" FromRole="Utilisateur" ToRole="MessageRight" />
+          <NavigationProperty Name="MyMPs" Relationship="SupbookModel.FK_MP_Destinataire" FromRole="Utilisateur" ToRole="MP" />
+          <NavigationProperty Name="ReceivedMPs" Relationship="SupbookModel.FK_MP_Utilisateur" FromRole="Utilisateur" ToRole="MP" />
+          <NavigationProperty Name="Role" Relationship="SupbookModel.FK_Utilisateur_Role" FromRole="Utilisateur" ToRole="Role" />
+          <NavigationProperty Name="Walls" Relationship="SupbookModel.FK_Wall_Utilisateur" FromRole="Utilisateur" ToRole="Wall" />
+          <NavigationProperty Name="FriendGroups" Relationship="SupbookModel.FK_FriendGroup_Utilisateur" FromRole="Utilisateur" ToRole="FriendGroup" />
+          <Property Type="Boolean" Name="PreventPublicPublish" Nullable="false" />
+          <Property Type="String" Name="ImagePath" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Likes" Relationship="SupbookModel.FK_Like_Like" FromRole="Utilisateur" ToRole="Like" />
+        </EntityType>
+        <EntityType Name="Wall">
+          <Key>
+            <PropertyRef Name="IdWall" />
+          </Key>
+          <Property Type="Int32" Name="IdWall" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TitreWall" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TxtWall" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateWall" Nullable="false" />
+          <Property Type="Int32" Name="IdUser" />
+          <NavigationProperty Name="MessageRights" Relationship="SupbookModel.FK_MessageRight_MessageRight" FromRole="Wall" ToRole="MessageRight" />
+          <NavigationProperty Name="Utilisateur" Relationship="SupbookModel.FK_Wall_Utilisateur" FromRole="Wall" ToRole="Utilisateur" />
+          <NavigationProperty Name="Likes" Relationship="SupbookModel.FK_Like_Wall" FromRole="Wall" ToRole="Like" />
+        </EntityType>
+        <Association Name="FK_Friend_Utilisateur">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="SupbookModel.Friend" Role="Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Friend_UtilisateurLinked">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="SupbookModel.Friend" Role="Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="IdUserLinked" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageRight_MessageRight">
+          <End Type="SupbookModel.Wall" Role="Wall" Multiplicity="1" />
+          <End Type="SupbookModel.MessageRight" Role="MessageRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wall">
+              <PropertyRef Name="IdWall" />
+            </Principal>
+            <Dependent Role="MessageRight">
+              <PropertyRef Name="IdWall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageRight_Utilisateur">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="SupbookModel.MessageRight" Role="MessageRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="MessageRight">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MP_Destinataire">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="0..1" />
+          <End Type="SupbookModel.MP" Role="MP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="MP">
+              <PropertyRef Name="IdContact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MP_Utilisateur">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="0..1" />
+          <End Type="SupbookModel.MP" Role="MP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="MP">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Role">
+          <End Type="SupbookModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wall_Utilisateur">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="0..1" />
+          <End Type="SupbookModel.Wall" Role="Wall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Wall">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FriendGroup">
+          <Key>
+            <PropertyRef Name="IdFriendGroup" />
+          </Key>
+          <Property Type="Int32" Name="IdFriendGroup" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdGroup" Nullable="false" />
+          <Property Type="Int32" Name="IdUser" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="SupbookModel.FK_FriendGroup_Group" FromRole="FriendGroup" ToRole="Group" />
+          <NavigationProperty Name="Utilisateur" Relationship="SupbookModel.FK_FriendGroup_Utilisateur" FromRole="FriendGroup" ToRole="Utilisateur" />
+        </EntityType>
+        <Association Name="FK_FriendGroup_Group">
+          <End Type="SupbookModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="SupbookModel.FriendGroup" Role="FriendGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="IdGroup" />
+            </Principal>
+            <Dependent Role="FriendGroup">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FriendGroup_Utilisateur">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="SupbookModel.FriendGroup" Role="FriendGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="FriendGroup">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Like">
+          <Key>
+            <PropertyRef Name="IdLike" />
+          </Key>
+          <Property Type="Int32" Name="IdLike" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdUser" Nullable="false" />
+          <Property Type="Int32" Name="IdWall" Nullable="false" />
+          <NavigationProperty Name="Utilisateur" Relationship="SupbookModel.FK_Like_Like" FromRole="Like" ToRole="Utilisateur" />
+          <NavigationProperty Name="Wall" Relationship="SupbookModel.FK_Like_Wall" FromRole="Like" ToRole="Wall" />
+        </EntityType>
+        <Association Name="FK_Like_Like">
+          <End Type="SupbookModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="SupbookModel.Like" Role="Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Like">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Like_Wall">
+          <End Type="SupbookModel.Wall" Role="Wall" Multiplicity="1" />
+          <End Type="SupbookModel.Like" Role="Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wall">
+              <PropertyRef Name="IdWall" />
+            </Principal>
+            <Dependent Role="Like">
+              <PropertyRef Name="IdWall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SupbookModelStoreContainer" CdmEntityContainer="SupbookEntities">
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="SupbookModel.Friend">
+              <MappingFragment StoreEntitySet="Friend">
+                <ScalarProperty Name="IdUserLinked" ColumnName="IdUserLinked" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdFriend" ColumnName="IdFriend" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="SupbookModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageRights">
+            <EntityTypeMapping TypeName="SupbookModel.MessageRight">
+              <MappingFragment StoreEntitySet="MessageRight">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdWall" ColumnName="IdWall" />
+                <ScalarProperty Name="IdMessageRight" ColumnName="IdMessageRight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPs">
+            <EntityTypeMapping TypeName="SupbookModel.MP">
+              <MappingFragment StoreEntitySet="MP">
+                <ScalarProperty Name="IdContact" ColumnName="IdContact" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="TxtMP" ColumnName="TxtMP" />
+                <ScalarProperty Name="DateMP" ColumnName="DateMP" />
+                <ScalarProperty Name="IdMp" ColumnName="IdMp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SupbookModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="txtRole" ColumnName="txtRole" />
+                <ScalarProperty Name="lbRole" ColumnName="lbRole" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateurs">
+            <EntityTypeMapping TypeName="SupbookModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="PreventPublicPublish" ColumnName="PreventPublicPublish" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="DateDeNaissance" ColumnName="DateDeNaissance" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Walls">
+            <EntityTypeMapping TypeName="SupbookModel.Wall">
+              <MappingFragment StoreEntitySet="Wall">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="DateWall" ColumnName="DateWall" />
+                <ScalarProperty Name="TxtWall" ColumnName="TxtWall" />
+                <ScalarProperty Name="TitreWall" ColumnName="TitreWall" />
+                <ScalarProperty Name="IdWall" ColumnName="IdWall" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FriendGroups">
+            <EntityTypeMapping TypeName="SupbookModel.FriendGroup">
+              <MappingFragment StoreEntitySet="FriendGroup">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="IdFriendGroup" ColumnName="IdFriendGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Likes">
+            <EntityTypeMapping TypeName="SupbookModel.Like">
+              <MappingFragment StoreEntitySet="Like">
+                <ScalarProperty Name="IdWall" ColumnName="IdWall" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdLike" ColumnName="IdLike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SupbookModel" ZoomLevel="72">
+        <EntityTypeShape EntityType="SupbookModel.Friend" Width="1.5" PointX="5.25" PointY="4.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupbookModel.Group" Width="1.5" PointX="3" PointY="3.5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupbookModel.MessageRight" Width="1.5" PointX="7.5" PointY="11.125" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupbookModel.MP" Width="1.5" PointX="5.25" PointY="12.5" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupbookModel.Role" Width="1.5" PointX="0.75" PointY="7.5" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupbookModel.Utilisateur" Width="1.5" PointX="3" PointY="6.125" Height="4.6725065104166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="SupbookModel.Wall" Width="1.5" PointX="5.25" PointY="15.5" Height="2.5571907552083317" IsExpanded="true" />
+        <AssociationConnector Association="SupbookModel.FK_Friend_Utilisateur" >
+          <ConnectorPoint PointX="4.5" PointY="6.150383615384615" />
+          <ConnectorPoint PointX="4.815093227279597" PointY="5.84569956011001" />
+          <ConnectorPoint PointX="4.934906772720403" PointY="5.7298440807114" />
+          <ConnectorPoint PointX="5" PointY="5.6669012220860679" />
+          <ConnectorPoint PointX="5" PointY="6.4965727172160523" />
+          <ConnectorPoint PointX="5.275383615384615" PointY="6.2302864583333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_Friend_UtilisateurLinked" >
+          <ConnectorPoint PointX="4.5" PointY="6.1319220769230771" />
+          <ConnectorPoint PointX="4.90625" PointY="5.7390926323680072" />
+          <ConnectorPoint PointX="4.90625" PointY="6.5384498344953128" />
+          <ConnectorPoint PointX="5.25" PointY="6.2060556891025627" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_MessageRight_MessageRight" >
+          <ConnectorPoint PointX="6.75" PointY="15.501152846153847" />
+          <ConnectorPoint PointX="7.125" PointY="15.126152846153847" />
+          <ConnectorPoint PointX="7.125" PointY="12.115143229166666" />
+          <ConnectorPoint PointX="7.5" PointY="12.115143229166666" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_MessageRight_Utilisateur" >
+          <ConnectorPoint PointX="4.5" PointY="10.170146484375" />
+          <ConnectorPoint PointX="8.25" PointY="10.170146484375" />
+          <ConnectorPoint PointX="8.25" PointY="11.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_MP_Destinataire" >
+          <ConnectorPoint PointX="3.75" PointY="10.797506510416667" />
+          <ConnectorPoint PointX="3.75" PointY="13.682444661458334" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="13.682444661458334" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="13.682444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="13.682444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_MP_Utilisateur" >
+          <ConnectorPoint PointX="4.1562525" PointY="10.797506510416667" />
+          <ConnectorPoint PointX="4.1562525" PointY="13.059969830729166" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="13.059969830729166" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="13.059969830729166" />
+          <ConnectorPoint PointX="5.25" PointY="13.059969830729166" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_Utilisateur_Role" >
+          <ConnectorPoint PointX="2.25" PointY="8.3939925130208337" />
+          <ConnectorPoint PointX="3" PointY="8.3939925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_Wall_Utilisateur" >
+          <ConnectorPoint PointX="3.3437475" PointY="10.797506510416667" />
+          <ConnectorPoint PointX="3.3437475" PointY="16.778595377604166" />
+          <ConnectorPoint PointX="5.25" PointY="16.778595377604166" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SupbookModel.FriendGroup" Width="1.5" PointX="5.25" PointY="7.5" Height="1.9802864583333326" IsExpanded="true" />
+        <AssociationConnector Association="SupbookModel.FK_FriendGroup_Group" >
+          <ConnectorPoint PointX="4.5" PointY="5.2879850260416674" />
+          <ConnectorPoint PointX="4.875" PointY="5.6629850260416674" />
+          <ConnectorPoint PointX="4.875" PointY="8.4901432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="8.4901432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_FriendGroup_Utilisateur" >
+          <ConnectorPoint PointX="4.5" PointY="7.9325716145833329" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="7.932571614583332" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="7.9325716145833329" />
+          <ConnectorPoint PointX="5.25" PointY="7.9325716145833329" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SupbookModel.Like" Width="1.5" PointX="7.5" PointY="14.125" Height="1.9802864583333317" IsExpanded="true" />
+        <AssociationConnector Association="SupbookModel.FK_Like_Like" >
+          <ConnectorPoint PointX="4.3593787499999994" PointY="10.797506510416667" />
+          <ConnectorPoint PointX="4.3593787499999994" PointY="15.182444661458334" />
+          <ConnectorPoint PointX="7.5" PointY="15.182444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="SupbookModel.FK_Like_Wall" >
+          <ConnectorPoint PointX="6.75" PointY="15.83447215224359" />
+          <ConnectorPoint PointX="7.5" PointY="15.83447215224359" />
+        </AssociationConnector>
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

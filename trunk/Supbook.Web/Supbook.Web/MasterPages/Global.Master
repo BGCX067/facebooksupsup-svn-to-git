@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Global.Master.cs" Inherits="Supbook.Web.MasterPages.Site1" %>
+<%@ Register TagName="Header" TagPrefix="Control" Src="~/Controls/Header.ascx"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script type="text/javascript" src="/Scripts/Global.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SupBook</title>
+    <link href="/Design/Global.css"type="text/css" rel="Stylesheet" />
+    <!-- Le header -->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<Control:Header id ="MonHead" runat="server"></Control:Header> 
+    <form id="form1" style="background-color:#E7EBF2" runat="server">
+    <asp:ScriptManager ID="ScriptManager" runat="server" ></asp:ScriptManager>
+    <div>
+        <!-- Le corps -->
+        <asp:ContentPlaceHolder ID="Body" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+    <!-- Le footer -->
+    <asp:ContentPlaceHolder ID="Footer" runat="server">
+    
+    </asp:ContentPlaceHolder>
+</body>
+</html>
